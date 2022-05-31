@@ -15,7 +15,6 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
     private Long id;
     @Column(unique = true,nullable = false)
     private String name;
@@ -26,5 +25,7 @@ public class Product {
     private Double price = 0.0;
     private Integer count =0;
     private boolean deleted;
+
+    private Long userId;
 
 }
