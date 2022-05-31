@@ -10,8 +10,8 @@ import uz.azi.ecomorder.service.OrderService;
 @RequiredArgsConstructor
 public class OrderController {
 
-
     private final OrderService service;
+
 
 
 }

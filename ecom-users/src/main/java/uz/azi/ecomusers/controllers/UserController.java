@@ -60,7 +60,7 @@ public class UserController {
                             content = @Content(schema =
                             @Schema(implementation = RuntimeException.class)))
             })
-    @Operation(summary = "delete user", description = "Deletes new user info")
+    @Operation(summary = "delete user", description = "Deletes  user ")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public Boolean delete(@PathVariable(name = "id") Long id) {
         return service.delete(id);
@@ -75,11 +75,28 @@ public class UserController {
                             content = @Content(schema =
                             @Schema(implementation = RuntimeException.class)))
             })
-    @Operation(summary = "delete user", description = "Deletes new user info")
+    @Operation(summary = "get user", description = "Gets  user info")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<UserDTo> users(){
         return service.getAll();
     }
+
+
+    @ApiResponses(
+            value = {@ApiResponse(responseCode = "200",
+                    description = " Retrieved one User by id successfully",
+                    content = @Content(schema = @Schema(implementation = Long.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found",
+                            content = @Content(schema =
+                            @Schema(implementation = RuntimeException.class)))
+            })
+    @Operation(summary = "get user", description = "Gets  user info")
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public UserDTo getOne(@PathVariable(name = "id") Long id){
+        return service.getOne(id);
+    }
+
+
 
 
 

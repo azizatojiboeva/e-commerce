@@ -61,5 +61,12 @@ public class UserService {
     }
 
 
+    public UserDTo getOne(Long id) {
+        repository.findById(id).orElseThrow(() ->
 
+        {
+            throw new RuntimeException("user not found");
+        });
+        return mapper.toDto(repository.getOne(id));
+    }
 }

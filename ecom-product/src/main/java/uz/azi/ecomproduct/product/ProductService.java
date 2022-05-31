@@ -31,13 +31,13 @@ public record ProductService(ProductMapper mapper, ProductRepository repository)
     }
 
 
-    public Void update(ProductUpdateDto updateDto) {
+    public boolean update(ProductUpdateDto updateDto) {
         if (Objects.isNull(updateDto)) throw new RuntimeException("Bad Request");
         Optional<Product> byName = repository.findById(updateDto.getId());
         if (byName.isEmpty()) throw new RuntimeException("Not Found");
         Product product = mapper.fromUpdateDto(updateDto);
         repository.save(product);
-        return null;
+        return true;
     }
 
 

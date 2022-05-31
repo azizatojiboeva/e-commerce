@@ -7,7 +7,7 @@ import uz.azi.ecomproduct.product.dto.ProductUpdateDto;
 
 import java.util.List;
 
-@RestController("/project/")
+@RestController("/product/")
 public record ProductController(ProductService service) {
 
     @PostMapping(value = "create")

@@ -1,14 +1,12 @@
 package uz.azi.ecomproduct.product.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ProductDto {
     private String name;
     private String description;

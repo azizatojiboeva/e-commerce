@@ -8,6 +8,5 @@ import uz.azi.ecomorder.repository.OrderRepository;
 @RequiredArgsConstructor
 public class OrderService {
 
-
     private final OrderRepository repository;
 }
