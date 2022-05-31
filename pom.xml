@@ -17,6 +17,9 @@
 
 	<modules>
 		<module>ecom-users</module>
+		<module>ecom-order</module>
+		<module>ecom-product</module>
+		<module>service-discovery</module>
 	</modules>
 
 </project>

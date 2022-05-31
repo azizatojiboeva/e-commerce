@@ -5,13 +5,15 @@ import uz.azi.ecomproduct.product.dto.ProductCreateDto;
 import uz.azi.ecomproduct.product.dto.ProductDto;
 import uz.azi.ecomproduct.product.dto.ProductUpdateDto;
 import uz.azi.ecomproduct.product.entity.Product;
+import uz.azi.ecomproduct.product.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public record ProductService(ProductMapper mapper, ProductRepository repository) {
+public record ProductService(ProductMapper mapper, ProductRepository repository,ProductFeignClient client) {
 
     public Long create(ProductCreateDto createDto) {
         if (Objects.isNull(createDto)) throw new RuntimeException("Bad Request");
@@ -55,20 +57,14 @@ public record ProductService(ProductMapper mapper, ProductRepository repository)
         return mapper.toDto(all);
     }
 
-/*
-    public List<ProductDto> getAll() {
-//        List<Product> allProducts = repository.getAllAndNotDeleted();
-//        if (Objects.isNull(allProducts))
-//            return new ResponseEntity<>(new DataDto<>(AppErrorDto.builder().message("Bad Request").status(HttpStatus.BAD_REQUEST).build()));
-//        List<ProductDto> allProductDtos = mapper.toDto(allProducts);
-//        return new ResponseEntity<>(new DataDto<>(allProductDtos));
-        return null;
-    }*/
+    public List<ProductDto> getAll(Long id) {
+        if (Objects.isNull(id)) throw new RuntimeException("Bad Request");
+        User user = client.getUser(id);
+        if (Objects.isNull(user)) throw new RuntimeException("Not found user");
+        List<Product> allByUserId = repository.findAllByUserId(id);
+        if (allByUserId.isEmpty()) throw new RuntimeException("This user not create product");
+        return mapper.toDto(allByUserId);
+    }
 
-  /*  private AppErrorDto checkFields(List<CategoryDto> categories) {
-        for (CategoryDto category : categories) {
-            categoryCheckService.checkCategoryExistence(category.getId());
-        }
-        return null;
-    }*/
+
 }

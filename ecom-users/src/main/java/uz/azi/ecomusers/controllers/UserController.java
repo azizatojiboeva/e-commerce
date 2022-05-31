@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import uz.azi.ecomusers.dtos.UserCreateDto;
-import uz.azi.ecomusers.dtos.UserDTo;
+import uz.azi.ecomusers.dtos.UserDto;
 import uz.azi.ecomusers.dtos.UserUpdateDto;
 import uz.azi.ecomusers.service.UserService;
 
@@ -77,7 +77,7 @@ public class UserController {
             })
     @Operation(summary = "get user", description = "Gets  user info")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<UserDTo> users(){
+    public List<UserDto> users(){
         return service.getAll();
     }
 
@@ -92,7 +92,7 @@ public class UserController {
             })
     @Operation(summary = "get user", description = "Gets  user info")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public UserDTo getOne(@PathVariable(name = "id") Long id){
+    public UserDto getOne(@PathVariable(name = "id") Long id){
         return service.getOne(id);
     }
 

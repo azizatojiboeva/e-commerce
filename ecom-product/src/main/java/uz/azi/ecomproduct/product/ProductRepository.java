@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import uz.azi.ecomproduct.product.entity.Product;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void softDelete(Long id);
 
     Optional<Product> findByName(String name);
+
+    List<Product> findAllByUserId(Long userId);
 }

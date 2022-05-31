@@ -16,7 +16,7 @@ public record ProductController(ProductService service) {
     }
 
     @PostMapping(value = "update")
-    public Boolean update(@RequestBody ProductUpdateDto productPlanUpdateDto) {
+    public Void update(@RequestBody ProductUpdateDto productPlanUpdateDto) {
         return service.update(productPlanUpdateDto);
     }
 
@@ -35,8 +35,8 @@ public record ProductController(ProductService service) {
         return service.getAll();
     }
 
-   /* @GetMapping(value = "list/{agentId}")
+    @GetMapping(value = "list/{agentId}")
     public List<ProductDto> getAllByAgentId(@PathVariable("agentId") Long agentId) {
-        return service.getAllByAgentId(agentId);
-    }*/
+        return service.getAll(agentId);
+    }
 }
