@@ -3,7 +3,7 @@ package uz.azi.ecomusers.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.azi.ecomusers.dtos.UserCreateDto;
-import uz.azi.ecomusers.dtos.UserDTo;
+import uz.azi.ecomusers.dtos.UserDto;
 import uz.azi.ecomusers.dtos.UserUpdateDto;
 import uz.azi.ecomusers.exceptions.UserNotFoundException;
 import uz.azi.ecomusers.mapper.UserMapper;
@@ -56,12 +56,12 @@ public class UserService {
         return true;
     }
 
-    public List<UserDTo> getAll() {
+    public List<UserDto> getAll() {
         return mapper.toDTos(repository.findAll());
     }
 
 
-    public UserDTo getOne(Long id) {
+    public UserDto getOne(Long id) {
         repository.findById(id).orElseThrow(() ->
 
         {
