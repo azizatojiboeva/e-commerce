@@ -1,6 +1,7 @@
-package uz.azi.ecomorder.model;
+package uz.azi.ecomorder.dtos;
 
 import lombok.*;
+import uz.azi.ecomorder.model.Order;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

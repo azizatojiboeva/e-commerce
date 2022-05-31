@@ -1,4 +1,4 @@
-package uz.azi.ecomorder.model;
+package uz.azi.ecomorder.dtos;
 
 import lombok.*;
 
