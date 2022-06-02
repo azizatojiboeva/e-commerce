@@ -28,8 +28,12 @@ public class Order {
 
     private int quantity;
 
+    private boolean deleted;
+
     @OneToMany(mappedBy = "order")
     private List<SoldProduct> products;
+
+
 
 
 }

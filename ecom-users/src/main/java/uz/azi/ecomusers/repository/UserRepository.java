@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import uz.azi.ecomusers.model.User;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
@@ -14,8 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findUserByUsername(String username);
 
-    @Transactional
     @Modifying
-    @Query(value = "update User set deleted =true where id=:id")
+    @Query(value = "update users u set u.deleted =true where u.id=:id", nativeQuery = true)
     void softDelete(Long id);
 }

@@ -26,9 +26,6 @@ public class UserDto {
 
     private String shippingAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
 
 
 }

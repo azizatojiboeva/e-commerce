@@ -7,13 +7,12 @@ import uz.azi.ecomproduct.product.dto.ProductUpdateDto;
 import uz.azi.ecomproduct.product.entity.Product;
 import uz.azi.ecomproduct.product.entity.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public record ProductService(ProductMapper mapper, ProductRepository repository,ProductFeignClient client) {
+public record ProductService(ProductMapper mapper, ProductRepository repository, ProductFeignClient client) {
 
     public Long create(ProductCreateDto createDto) {
         if (Objects.isNull(createDto)) throw new RuntimeException("Bad Request");
@@ -33,13 +32,13 @@ public record ProductService(ProductMapper mapper, ProductRepository repository,
     }
 
 
-    public boolean update(ProductUpdateDto updateDto) {
+    public Void update(ProductUpdateDto updateDto) {
         if (Objects.isNull(updateDto)) throw new RuntimeException("Bad Request");
         Optional<Product> byName = repository.findById(updateDto.getId());
         if (byName.isEmpty()) throw new RuntimeException("Not Found");
         Product product = mapper.fromUpdateDto(updateDto);
         repository.save(product);
-        return true;
+        return null;
     }
 
 
@@ -67,4 +66,12 @@ public record ProductService(ProductMapper mapper, ProductRepository repository,
     }
 
 
+    public boolean checkCount(Long id, int count) {
+        Optional<Product> byId = repository.findById(id);
+        if (byId.isEmpty()) {
+            throw new RuntimeException("Product not found!");
+        }
+        Product product = byId.get();
+        return product.getCount() > count;
+    }
 }

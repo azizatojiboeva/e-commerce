@@ -23,7 +23,7 @@ public class UserService {
     public Long create(UserCreateDto dto) {
         User user = mapper.fromCreateDto(dto);
         Optional<User> userByUsername = repository.findUserByUsername(user.getUsername());
-        if (userByUsername.isEmpty()) {
+        if (userByUsername.isPresent()) {
             throw new RuntimeException("User already exist");
         }
         User saved = repository.save(user);
