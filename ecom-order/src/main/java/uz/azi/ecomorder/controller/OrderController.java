@@ -25,6 +25,9 @@ public class OrderController {
                     @ApiResponse(responseCode = "400", description = "Bad request, username already exist",
                             content = @Content(schema = @Schema(implementation = RuntimeException.class))
                     )
+
+
+
             })
     @Operation(summary = " Order create", description = "Creates new order info")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
